@@ -50,17 +50,12 @@ public final class FormaNuevoHotel
        public String getDireccion() {
           return (this.direccion);
       }
-	public String getEstado() {
-        return (this.estado);
-    }
-    public String getPais() {
-        return (this.pais);
-    }
-	public Collection getEstados(){
+
+	public Collection getLugares(){
 		return (this.lugares);
 	}
 
-	public void setEstados(Collection lugares) {
+	public void setLugares(Collection lugares) {
         this.lugares = lugares;
     }
 	public void setNombre(String nombre) {
@@ -86,13 +81,6 @@ public final class FormaNuevoHotel
       public void setDireccion(String direccion) {
           this.direccion = direccion;
       }
-	public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
 
     public void reset(ActionMapping mapping,
                       HttpServletRequest request) {
