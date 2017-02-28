@@ -1,7 +1,7 @@
-<!-- Inicio de código para determinar el tiempo de procesamiento -->
+<!-- Inicio de cÃ²digo para determinar el tiempo de procesamiento -->
 	<%@ page import="java.util.*" %>
 	<% long t1=System.currentTimeMillis(); %>
-<!-- Fin de código para determinar el tiempo de procesamiento -->
+<!-- Fin de cï¿½digo para determinar el tiempo de procesamiento -->
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
@@ -22,11 +22,11 @@
       			<sql:param value='${param.ordenarPor}'/>
 			</sql:query>
   		</c:when>
-  	</c:choose>	
-	
+  	</c:choose>
+
 	<table align="center">
 		<!-- Inicio de Encabezado de la Lista -->
-		
+
 		<!-- Inicio de Encabezado de Columnas -->
 		<tr>
 			<th>
@@ -35,11 +35,11 @@
 			<th>
 				<a href='verPersonas.jsp?ordenarPor=nombre'>Nombre</a>
 			</th>
-			<th>X</th>			
+			<th>X</th>
 		</tr>
 		<!-- Fin de Encabezado de Columnas -->
 		<!-- Fin de Encabezado de la Lista -->
-		
+
 		<!-- Inicio del Detalle de la Lista -->
 		<c:forEach var="persona" items="${personas.rows}">
 		<tr>
@@ -57,13 +57,13 @@
 		</tr>
 		</c:forEach>
 		<!-- Fin del Detalle de la Lista -->
-		
+
 		<!-- Inicio del Pie de la Lista -->
-		
+
 		<!-- Fin del Pie de la Lista -->
-				
+
 	</table>
 
-<!-- Inicio de código para calcular y visualiza el tiempo de procesamiento -->
+<!-- Inicio de cï¿½digo para calcular y visualiza el tiempo de procesamiento -->
 <p><%= System.currentTimeMillis()-t1 %>ms</p>
-<!-- Fin de código para calcular y visualiza el tiempo de procesamiento -->
+<!-- Fin de cï¿½digo para calcular y visualiza el tiempo de procesamiento -->

@@ -1,6 +1,6 @@
-﻿<!--    
+﻿<!--
     build.xml
-    Autor: 
+    Autor:
     Script para la construccion de aplicaciones web
     basadas en el servidor Tomcat e Hibernate.
     This build script assumes that the source code of your web application
@@ -26,7 +26,7 @@
     set to the current working directory.
 -->
 
-<project name="MAL" default="build" basedir=".">
+<project name="MAL" default="install" basedir=".">
 
 
 <!-- ===================== Property Definitions ====================== -->
@@ -84,23 +84,23 @@
 -->
 
     <property name="app.name"        value="MAL"/>
-    <property name="app.version"     value="3.0"/>
+    <property name="app.version"     value="0.1"/>
     <property name="app.path"        value="/${app.name}"/>
 
     <property name="src.home"        value="${basedir}/src"/>
     <property name="web.home"        value="${basedir}/web"/>
     <property name="docs.home"       value="${basedir}/docs"/>
     <property name="build.home"      value="${basedir}/build"/>
-    <property name="classes.home"    value="${basedir}/build/WEB-INF/classes"/>    
-    <property name="lib.home"        value="${basedir}/build/WEB-INF/lib"/>    
+    <property name="classes.home"    value="${basedir}/build/WEB-INF/classes"/>
+    <property name="lib.home"        value="${basedir}/build/WEB-INF/lib"/>
     <property name="dist.home"       value="${basedir}/dist"/>
     <property name="test.out.dir"    value="${basedir}/testout"/>
 
-    <property   name="catalina.home"    
-                value="C:\Program Files\apache-tomcat-9.0.0.M15"/>
+    <property   name="catalina.home"
+                value="/Users/Max/Library/Tomcat9"/>
     <property name="manager.url"      value="http://127.0.0.1:8080/manager/text"/>
-    <property name="manager.username" value="root"/>
-    <property name="manager.password" value="root"/>
+    <property name="manager.username" value="tomcat"/>
+    <property name="manager.password" value="tomcat"/>
 
 
 
@@ -127,7 +127,7 @@
     For more information about the Manager web application, and the
     functionality of these tasks, see
     <http://localhost:8080/tomcat-docs/manager-howto.html>.
-    
+
     <fileset dir="${catalina.home}/lib">
         <include name="catalina-ant.jar"/>
         <include name="tomcat-coyote.jar"/>
@@ -135,8 +135,8 @@
     </fileset>
     <fileset dir="${catalina.home}/bin">
         <include name="tomcat-juli.jar"/>
-    </fileset>  
-    <pathelement 
+    </fileset>
+    <pathelement
     location="${catalina.home}/lib/catalina-ant.jar" />
 -->
     <path id="tomcat.ant.classpath">
@@ -203,17 +203,17 @@
 -->
 
     <path id="compile.classpath">
-        <!-- 
-            Incluye todos los archivos JAR que estan incluidos 
-            en /WEB-INF/lib 
+        <!--
+            Incluye todos los archivos JAR que estan incluidos
+            en /WEB-INF/lib
         -->
         <fileset dir="${web.home}/WEB-INF/lib">
             <include name="*.jar"/>
         </fileset>
 
-        <!-- 
-            Incluye todos los elementos que Tomcat expone a 
-            sus aplicaciones 
+        <!--
+            Incluye todos los elementos que Tomcat expone a
+            sus aplicaciones
         -->
 
         <fileset dir="${catalina.home}/lib">
@@ -223,9 +223,9 @@
         <fileset dir="${catalina.home}/bin">
             <include name="tomcat-juli.jar"/>
         </fileset>
-        <!-- 
+        <!--
             Tomcat bilbitecas dependiendo de la version, los directorios
-        
+
         <pathelement location="${catalina.home}/common/classes"/>
         <fileset dir="${catalina.home}/common/endorsed">
             <include name="*.jar"/>
@@ -235,9 +235,9 @@
             <include name="*.jar"/>
         </fileset>
         -->
-        
-        <!-- 
-            Incluye todas las clases generadas del aplicacion 
+
+        <!--
+            Incluye todas las clases generadas del aplicacion
         -->
         <pathelement location="${classes.home}"/>
 
@@ -337,7 +337,7 @@
                 debug="${compile.debug}"
                 deprecation="${compile.deprecation}"
                 optimize="${compile.optimize}">
-                
+
             <classpath refid="compile.classpath"/>
         </javac>
 
@@ -455,12 +455,12 @@
     NOTE:  This target will only succeed if it is run from the same server
     that Tomcat is running on.
     NOTE:  This is the logical opposite of the "remove" target.
-    
-    
+
+
     war="file:${build.home}"/>
 -->
 
-    <target name="install" depends="build"
+    <target name="install" depends="build,dist"
             description="Install application to servlet container">
 
         <install url="${manager.url}"
@@ -518,7 +518,7 @@
 
 
 <!-- ==================== Esquema Target ============================== -->
-  <target name="db" 
+  <target name="db"
           description="Ejecuta el administrador gráfico de HSQLDB" >
 
       <java classname="org.hsqldb.util.DatabaseManager"
@@ -550,7 +550,7 @@
 
   </target>
 
-  <target name="esquema" 
+  <target name="esquema"
           depends="build"
           description="Genera el esquema de la base de datos desde los archivos de mapeo">
 
@@ -562,18 +562,18 @@
                   drop="no"
                   delimiter=";"
                   output="esquema.sql"
-                  quiet="no" 
+                  quiet="no"
                   text="no" >
     </schemaexport>
 
   </target>
 
 
-    <target name="junit" 
+    <target name="junit"
            description="Ejecuta la suite de pruebas">
 
         <mkdir dir="${test.out.dir}"/>
- 
+
        <junit printsummary="yes" fork="no" haltonfailure="yes">
             <classpath>
                 <fileset dir="${lib.home}">
@@ -583,29 +583,29 @@
             </classpath>
             <formatter type="plain"/>
             <formatter type="xml"/>
-            <test name="edu.uag.iidis.scec.pruebas.AllTests" 
-                  todir="${test.out.dir}" 
+            <test name="edu.uag.iidis.scec.pruebas.AllTests"
+                  todir="${test.out.dir}"
                   haltonfailure="no"/>
         </junit>
 
     </target>
 
 
-    <target name="junitreport" 
-           depends="junit" 
+    <target name="junitreport"
+           depends="junit"
            description="Ejecuta pruebas y crea reporte">
 
         <junitreport todir="${test.out.dir}">
             <fileset dir="${test.out.dir}">
                 <include name="TEST-*.xml"/>
             </fileset>
-            <report format="frames" 
+            <report format="frames"
                     todir="${test.out.dir}"/>
         </junitreport>
 
     </target>
 
-    <target name="alltests" 
+    <target name="alltests"
           description="Crea y persiste algunos datos">
 
         <java classname="edu.uag.iidis.scec.pruebas.AllTests" fork="true">
