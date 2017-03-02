@@ -97,7 +97,7 @@
     <property name="test.out.dir"    value="${basedir}/testout"/>
 
     <property   name="catalina.home"
-                value="/Users/Max/Library/Tomcat9"/>
+                value="C:\Program Files\apache-tomcat-9.0.0.M15"/>
     <property name="manager.url"      value="http://127.0.0.1:8080/manager/text"/>
     <property name="manager.username" value="tomcat"/>
     <property name="manager.password" value="tomcat"/>
