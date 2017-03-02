@@ -6,7 +6,7 @@
     <head>
         <title>USJ</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-        
+        <script type="text/javascript" src="js/jQuery.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/plantilla.css">
         <link rel="stylesheet" type="text/css" href="css/materialize.css">
@@ -43,7 +43,6 @@
                 </td>
             </tr>
         </table>
-        <script type="text/javascript" src="js/jQuery.js"></script>
         <script type="text/javascript" src="js/materialize.js"></script>
     </body>
 </html>
