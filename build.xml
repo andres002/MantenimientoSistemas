@@ -468,7 +468,6 @@
                 password="${manager.password}"
                 path="${app.path}"
                 war="file:${dist.home}/${app.name}v${app.version}.war"/>
-
     </target>
 
     <!-- Ejecucion de todas las tareas importantes -->
