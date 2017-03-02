@@ -26,6 +26,8 @@ public final class FormaNuevoHotel
           private String direccion;
 	Collection lugares;
     private FormFile imagen;
+    private String pais;
+    private String estado;
 
 
     public String getNombre() {
