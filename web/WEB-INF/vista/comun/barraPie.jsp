@@ -15,7 +15,7 @@
 			<td align="center">
 				Copyright © 2017. UPCHIAPAS    Todos los derechos reservados.
 				<br> Andres| Max | Luis Farelo
-				<br> 2 De Febrero de 2017
+				<br> 6 De Marzo de 2017
 			</td>
 		</tr>						
 	</table>
